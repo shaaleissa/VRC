@@ -1,0 +1,6 @@
+********* Appointment 7 Information *********
+Appointment Date: 2022-02-13
+Center ID: 1868
+User SSN: 1002856392
+is Completed? true
+Vaccine SNI: 66556000  Current Status: twice vaccinated
