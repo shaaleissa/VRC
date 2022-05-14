@@ -9,5 +9,21 @@ package project;
  * @author shahadaleissa
  */
 public class Medical_Center {
+
+    public Medical_Center() {
+    }
+
+    public Medical_Center(String medId, String centerName, String location) {
+        this.medId = medId;
+        this.centerName = centerName;
+        this.location = location;
+    }
+
+    
+    
+    private String medId;
+    private String centerName;
+    private String location;
+  
     
 }
