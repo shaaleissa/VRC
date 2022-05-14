@@ -261,6 +261,8 @@ model.addRow(row);
                 .addContainerGap())
         );
 
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/vrc.png"))); // NOI18N
+
         jTable1_Display_appointments.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
