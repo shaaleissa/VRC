@@ -317,13 +317,10 @@ public class SignIn extends javax.swing.JFrame {
         // TODO add your handling code here:
          jPasswordField1.setText("");
         jTextField1.setText("");
-        
+        this.setVisible(false);
         UserSignUp u= new UserSignUp();
         u.setVisible(true);
-        this.setVisible(false);
-        
-      
-        
+          
     }//GEN-LAST:event_jLabel5MouseClicked
 
     public boolean validUser(){
