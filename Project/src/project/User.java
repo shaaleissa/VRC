@@ -8,7 +8,9 @@ package project;
  *
  * @author shahadaleissa
  */
-public class User extends Medical_Center {
+public class User  {
+
+   
 
     public String getfName() {
         return fName;

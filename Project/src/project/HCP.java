@@ -38,7 +38,7 @@ public  Connection getConnection() {
     
     }
     
-    ArrayList<Information> allItems;
+    ArrayList<Healthcare_Professionals> allItems;
     public void Print() {
         this.allItems = new ArrayList<>();
        
@@ -47,7 +47,7 @@ public  Connection getConnection() {
                 java.sql.Statement stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery("SELECT pfname, surname, location, phoneNumber FROM healthcare_professional, medical_center WHERE med_id=CenterID");
                 while (rs.next()) {
-                    this.allItems.add(new Information(rs.getString(1), rs.getString(2), rs.getString(3),rs.getInt(4)));
+                    this.allItems.add(new Healthcare_Professionals(rs.getString(1), rs.getString(2), rs.getString(3),rs.getInt(4)));
                 
                 }
 
@@ -65,8 +65,8 @@ public  Connection getConnection() {
     public String getAllItems() {
 
         String details = "";
-        for (Information item : allItems) {
-            details += String.format("%-20s", item.pfname)  + "           " + String.format("%-20s", item.surname) + "\t\t" + String.format("%-20s", item.location) + "\t    " + item.phoneNumber + "\n";
+        for (Healthcare_Professionals item : allItems) {
+            details += String.format("%-20s", item.getPfname())  + "           " + String.format("%-20s", item.getSurname()) + "\t\t" + String.format("%-20s", item.getLocation()) + "\t    " + item.getPhoneNumber() + "\n";
         }
         return details;
     }
