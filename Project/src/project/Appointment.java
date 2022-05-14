@@ -88,7 +88,7 @@ public class Appointment extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(193, 244, 204));
 
-        profileIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/vrc.png"))); // NOI18N
+        profileIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/profile.png"))); // NOI18N
 
         home.setBackground(new java.awt.Color(244, 245, 239));
         home.setFont(new java.awt.Font("Arial Rounded MT Bold", 2, 12)); // NOI18N
@@ -252,6 +252,8 @@ public class Appointment extends javax.swing.JFrame {
                 usernameActionPerformed(evt);
             }
         });
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/vrc.png"))); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         jLabel5.setText("Center ID");

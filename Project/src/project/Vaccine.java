@@ -11,6 +11,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -21,7 +25,8 @@ import javax.swing.JOptionPane;
  */
 public class Vaccine extends javax.swing.JFrame {
     Connection con;
-    int SNI = (int)(Math.random()*(999999-100000+1)+100000);  
+    int SNI = (int)(Math.random()*(999999-100000+1)+100000); 
+    Date date = new Date(); 
      DateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
       SignIn acc= new SignIn();
       String commonSNI= String.valueOf(SNI) ;
@@ -30,7 +35,7 @@ public class Vaccine extends javax.swing.JFrame {
      */
     public Vaccine() {
         initComponents();
-        
+        dateField.setDate(date);
         
     }
 
@@ -223,6 +228,11 @@ public class Vaccine extends javax.swing.JFrame {
         buttonGroup1.add(dose3RadioButton);
         dose3RadioButton.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
         dose3RadioButton.setText("3 doses");
+        dose3RadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dose3RadioButtonActionPerformed(evt);
+            }
+        });
 
         doseTypeLabel.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 13)); // NOI18N
         doseTypeLabel.setText("Please specify dose type:");
@@ -242,6 +252,11 @@ public class Vaccine extends javax.swing.JFrame {
         dose2ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "none", "Pfizer", "Astrazenica", "moderna", " " }));
 
         dose3ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "none", "Pfizer", "Astrazenica", "moderna", " " }));
+        dose3ComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dose3ComboBoxActionPerformed(evt);
+            }
+        });
 
         dose1Label.setText("dose 1:\n");
 
@@ -348,8 +363,12 @@ public class Vaccine extends javax.swing.JFrame {
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
         
-        
+           
         try{
+               if(!inRange(formatDate.format(dateField.getDate()))){
+            JOptionPane.showMessageDialog(null, "you cannot sign up for a vaccine as its been less than 3 weeks since your last shot!",
+               "error", JOptionPane.ERROR_MESSAGE);
+             }
             Class.forName("com.mysql.cj.jdbc.Driver");
             con= (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/VRC", "root","Sh$123456");
             String Query="INSERT INTO Vaccine VALUES (?,?,?,?,?,?)";
@@ -360,7 +379,7 @@ public class Vaccine extends javax.swing.JFrame {
             st.setString(4, dose1ComboBox.getSelectedItem().toString());
             st.setString(5, dose2());
             st.setString(6,dose3());
-            if( st.executeUpdate() ==1){
+            if( st.executeUpdate() ==1 && inRange(formatDate.format(dateField.getDate())) ){
                 JOptionPane.showMessageDialog(this, "You can move to the symptom analyzer", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
             }
             else if(dateField.getDate() == null) {
@@ -369,6 +388,8 @@ public class Vaccine extends javax.swing.JFrame {
             else if(dose1ComboBox.getSelectedItem()== null && dose2()==null && dose3()==null){
                  JOptionPane.showMessageDialog(this, "Choose dose/s taken or if unvaccinated click on the unvaccinated button ", "Error", JOptionPane.ERROR);
             }
+         
+
             
             
         }catch (SQLException ex) {
@@ -376,6 +397,7 @@ public class Vaccine extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Vaccine.class.getName()).log(Level.SEVERE, null, ex);
         }
+        if(inRange(formatDate.format(dateField.getDate()))){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con= (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/VRC", "root","Sh$123456");
@@ -394,15 +416,20 @@ public class Vaccine extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Vaccine.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        }
     }//GEN-LAST:event_nextButtonActionPerformed
 
     private void dose1RadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dose1RadioButtonActionPerformed
-        // TODO add your handling code here:
+        dose2ComboBox.setEnabled(false);
+        dose3ComboBox.setEnabled(false);
+        dose1ComboBox.setEnabled(true);
     }//GEN-LAST:event_dose1RadioButtonActionPerformed
 
     private void dose2RadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dose2RadioButtonActionPerformed
-        // TODO add your handling code here:
+        dose3ComboBox.setEnabled(false);
+        dose1ComboBox.setEnabled(true);
+        dose2ComboBox.setEnabled(true);
+        
     }//GEN-LAST:event_dose2RadioButtonActionPerformed
 
     private void dose1ComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_dose1ComboBoxItemStateChanged
@@ -461,6 +488,16 @@ public class Vaccine extends javax.swing.JFrame {
         SignIn l=new SignIn();
         l.setVisible(true);
     }//GEN-LAST:event_logoutActionPerformed
+
+    private void dose3RadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dose3RadioButtonActionPerformed
+        dose1ComboBox.setEnabled(true);
+        dose2ComboBox.setEnabled(true);
+        dose3ComboBox.setEnabled(true);
+    }//GEN-LAST:event_dose3RadioButtonActionPerformed
+
+    private void dose3ComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dose3ComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dose3ComboBoxActionPerformed
         public String vac_type(){
             if(dose1RadioButton.isSelected()){
                 return dose1ComboBox.getSelectedItem().toString();
@@ -486,6 +523,17 @@ public class Vaccine extends javax.swing.JFrame {
             }else if(dose2RadioButton.isSelected()){
                 return "twice Vaccinated";
             }else return "fully Vaccinated";
+        }
+        
+        public boolean inRange(String date){
+
+      LocalDate currentDate = LocalDate.now();
+      LocalDate currentDateMinus3Weeks = currentDate.minusWeeks(3);
+      DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.US);
+
+      LocalDate vaccDate = LocalDate.parse(date,dateFormat);
+      
+        return !vaccDate.isAfter(currentDateMinus3Weeks);
         }
         
            

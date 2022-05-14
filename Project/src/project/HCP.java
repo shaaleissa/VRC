@@ -17,6 +17,7 @@ import java.util.ArrayList;
  */
 public class HCP extends javax.swing.JFrame {
 Connection con;
+ SignIn acc = new SignIn();
 public  Connection getConnection() {
         try {
             if (con == null) {
@@ -86,13 +87,13 @@ public  Connection getConnection() {
         ProfHealthCareTable = new javax.swing.JTable();
         MainPanel = new javax.swing.JPanel();
         MenuPanel = new javax.swing.JPanel();
-        HomeButton = new javax.swing.JButton();
-        AppointmentButton = new javax.swing.JButton();
-        BookingButton = new javax.swing.JButton();
-        HCPButton = new javax.swing.JButton();
-        FAQsButton = new javax.swing.JButton();
-        LogotButton = new javax.swing.JButton();
         ProfileLabel = new javax.swing.JLabel();
+        appointment = new javax.swing.JButton();
+        home = new javax.swing.JButton();
+        booking = new javax.swing.JButton();
+        contacts = new javax.swing.JButton();
+        FAQ = new javax.swing.JButton();
+        logout = new javax.swing.JButton();
         TitleLabel = new javax.swing.JLabel();
         EmailLabel = new javax.swing.JLabel();
         Email2Label = new javax.swing.JLabel();
@@ -183,96 +184,101 @@ public  Connection getConnection() {
 
         MenuPanel.setBackground(new java.awt.Color(193, 244, 197));
 
-        HomeButton.setBackground(new java.awt.Color(244, 245, 239));
-        HomeButton.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
-        HomeButton.setForeground(new java.awt.Color(51, 51, 51));
-        HomeButton.setText("Home");
-        HomeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                HomeButtonActionPerformed(evt);
-            }
-        });
-
-        AppointmentButton.setBackground(new java.awt.Color(244, 245, 239));
-        AppointmentButton.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 10)); // NOI18N
-        AppointmentButton.setForeground(new java.awt.Color(51, 51, 51));
-        AppointmentButton.setText("My Appointments");
-        AppointmentButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AppointmentButtonActionPerformed(evt);
-            }
-        });
-
-        BookingButton.setBackground(new java.awt.Color(244, 245, 239));
-        BookingButton.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 10)); // NOI18N
-        BookingButton.setForeground(new java.awt.Color(51, 51, 51));
-        BookingButton.setText("Book An Appointment");
-
-        HCPButton.setBackground(new java.awt.Color(244, 245, 239));
-        HCPButton.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 10)); // NOI18N
-        HCPButton.setForeground(new java.awt.Color(51, 51, 51));
-        HCPButton.setText("HealthCare Contacts");
-        HCPButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                HCPButtonActionPerformed(evt);
-            }
-        });
-
-        FAQsButton.setBackground(new java.awt.Color(244, 245, 239));
-        FAQsButton.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
-        FAQsButton.setForeground(new java.awt.Color(51, 51, 51));
-        FAQsButton.setText("FAQ's");
-
-        LogotButton.setBackground(new java.awt.Color(244, 245, 239));
-        LogotButton.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
-        LogotButton.setForeground(new java.awt.Color(51, 51, 51));
-        LogotButton.setText("Logout");
-        LogotButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LogotButtonActionPerformed(evt);
-            }
-        });
-
         ProfileLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/profile.png"))); // NOI18N
+
+        appointment.setBackground(new java.awt.Color(244, 245, 239));
+        appointment.setFont(new java.awt.Font("Arial Rounded MT Bold", 2, 10)); // NOI18N
+        appointment.setForeground(new java.awt.Color(51, 51, 51));
+        appointment.setText("<html>\nMy \nAppointments");
+        appointment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                appointmentActionPerformed(evt);
+            }
+        });
+
+        home.setBackground(new java.awt.Color(244, 245, 239));
+        home.setFont(new java.awt.Font("Arial Rounded MT Bold", 2, 12)); // NOI18N
+        home.setText("Home");
+        home.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeActionPerformed(evt);
+            }
+        });
+
+        booking.setBackground(new java.awt.Color(244, 245, 239));
+        booking.setFont(new java.awt.Font("Arial Rounded MT Bold", 2, 10)); // NOI18N
+        booking.setForeground(new java.awt.Color(51, 51, 51));
+        booking.setText("<html>\nBook An  \nAppointment");
+        booking.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bookingActionPerformed(evt);
+            }
+        });
+
+        contacts.setBackground(new java.awt.Color(244, 245, 239));
+        contacts.setFont(new java.awt.Font("Arial Rounded MT Bold", 2, 12)); // NOI18N
+        contacts.setForeground(new java.awt.Color(51, 51, 51));
+        contacts.setText("<html>\nHealthcare\nContacts");
+        contacts.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contactsActionPerformed(evt);
+            }
+        });
+
+        FAQ.setBackground(new java.awt.Color(244, 245, 239));
+        FAQ.setFont(new java.awt.Font("Arial Rounded MT Bold", 2, 12)); // NOI18N
+        FAQ.setForeground(new java.awt.Color(51, 51, 51));
+        FAQ.setText("FAQ's");
+        FAQ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FAQActionPerformed(evt);
+            }
+        });
+
+        logout.setBackground(new java.awt.Color(244, 245, 239));
+        logout.setFont(new java.awt.Font("Arial Rounded MT Bold", 2, 12)); // NOI18N
+        logout.setForeground(new java.awt.Color(51, 51, 51));
+        logout.setText("Logout");
+        logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout MenuPanelLayout = new javax.swing.GroupLayout(MenuPanel);
         MenuPanel.setLayout(MenuPanelLayout);
         MenuPanelLayout.setHorizontalGroup(
             MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MenuPanelLayout.createSequentialGroup()
-                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(MenuPanelLayout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(ProfileLabel))
-                    .addGroup(MenuPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(LogotButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(FAQsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(HCPButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(BookingButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(AppointmentButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(HomeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addGap(25, 25, 25)
+                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(appointment, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(booking, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(contacts, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FAQ, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(home, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ProfileLabel))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         MenuPanelLayout.setVerticalGroup(
             MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MenuPanelLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(ProfileLabel)
-                .addGap(12, 12, 12)
-                .addComponent(HomeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(AppointmentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(BookingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(HCPButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(FAQsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(LogotButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(home, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addComponent(appointment, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(booking, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(contacts, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(FAQ, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
         );
 
         TitleLabel.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
@@ -329,7 +335,7 @@ public  Connection getConnection() {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, MainPanelLayout.createSequentialGroup()
                         .addGap(53, 53, 53)
                         .addComponent(TitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 240, Short.MAX_VALUE)
                         .addComponent(LogoLabel)
                         .addContainerGap())
                     .addGroup(MainPanelLayout.createSequentialGroup()
@@ -346,22 +352,22 @@ public  Connection getConnection() {
                                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(FaceBook2Label)
                                     .addComponent(Twitter2Label, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(54, 54, 54)
+                        .addGap(69, 69, 69)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(MainPanelLayout.createSequentialGroup()
                 .addComponent(MenuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(MainPanelLayout.createSequentialGroup()
+                        .addGap(95, 95, 95)
+                        .addComponent(CS2Labe))
+                    .addGroup(MainPanelLayout.createSequentialGroup()
                         .addGap(45, 45, 45)
                         .addComponent(CSLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(MainPanelLayout.createSequentialGroup()
                         .addGap(88, 88, 88)
-                        .addComponent(Email2Label, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(MainPanelLayout.createSequentialGroup()
-                        .addGap(95, 95, 95)
-                        .addComponent(CS2Labe)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(Email2Label, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(511, Short.MAX_VALUE))
         );
         MainPanelLayout.setVerticalGroup(
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -379,10 +385,10 @@ public  Connection getConnection() {
                     .addComponent(VRCLabel)
                     .addComponent(EmailLabel))
                 .addGap(18, 18, 18)
-                .addComponent(Email2Label)
-                .addGap(23, 23, 23)
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(MainPanelLayout.createSequentialGroup()
+                        .addComponent(Email2Label)
+                        .addGap(23, 23, 23)
                         .addComponent(TwitterLabel)
                         .addGap(18, 18, 18)
                         .addComponent(Twitter2Label)
@@ -392,7 +398,7 @@ public  Connection getConnection() {
                         .addComponent(FaceBook2Label)
                         .addGap(30, 30, 30)
                         .addComponent(CSLabel)
-                        .addGap(18, 18, 18)
+                        .addGap(8, 8, 8)
                         .addComponent(CS2Labe))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -412,42 +418,60 @@ public  Connection getConnection() {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void HCPButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HCPButtonActionPerformed
-        // TODO add your handling code here:
+    private void appointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appointmentActionPerformed
+        this.setVisible(false);
+        AppFrame a= new AppFrame();
+        a.setVisible(true);
+    }//GEN-LAST:event_appointmentActionPerformed
+
+    private void homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeActionPerformed
+        this.setVisible(false);
+        HomePage h=new HomePage();
+        h.setVisible(true);
+    }//GEN-LAST:event_homeActionPerformed
+
+    private void bookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookingActionPerformed
+        if(acc.validUser()){
+            this.setVisible(false);
+            SymptomAnalyzer a=new SymptomAnalyzer();
+            a.setVisible(true);
+        }
+        else{
+            this.setVisible(false);
+            Vaccine a=new Vaccine();
+            a.setVisible(true);}
+    }//GEN-LAST:event_bookingActionPerformed
+
+    private void contactsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactsActionPerformed
         this.setVisible(false);
         HCP c=new HCP();
         c.setVisible(true);
-    }//GEN-LAST:event_HCPButtonActionPerformed
+    }//GEN-LAST:event_contactsActionPerformed
 
-    private void AppointmentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AppointmentButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AppointmentButtonActionPerformed
+    private void FAQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FAQActionPerformed
+        this.setVisible(false);
+        FAQFrame faq=new FAQFrame();
+        faq.setVisible(true);
+    }//GEN-LAST:event_FAQActionPerformed
 
-    private void LogotButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogotButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_LogotButtonActionPerformed
-
-    private void HomeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_HomeButtonActionPerformed
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+        this.setVisible(false);
+        SignIn l=new SignIn();
+        l.setVisible(true);
+    }//GEN-LAST:event_logoutActionPerformed
 
    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AppointmentButton;
-    private javax.swing.JButton BookingButton;
     private javax.swing.JLabel CS2Labe;
     private javax.swing.JLabel CSLabel;
     private javax.swing.JLabel Email2Label;
     private javax.swing.JLabel EmailLabel;
-    private javax.swing.JButton FAQsButton;
+    private javax.swing.JButton FAQ;
     private javax.swing.JLabel FaceBook2Label;
     private javax.swing.JLabel FaceBookLabel;
-    private javax.swing.JButton HCPButton;
-    private javax.swing.JButton HomeButton;
     private javax.swing.JLabel LogoLabel;
-    private javax.swing.JButton LogotButton;
     private javax.swing.JPanel MainPanel;
     private javax.swing.JPanel MenuPanel;
     private javax.swing.JTable ProfHealthCareTable;
@@ -456,9 +480,14 @@ public  Connection getConnection() {
     private javax.swing.JLabel Twitter2Label;
     private javax.swing.JLabel TwitterLabel;
     private javax.swing.JLabel VRCLabel;
+    private javax.swing.JButton appointment;
+    private javax.swing.JButton booking;
+    private javax.swing.JButton contacts;
+    private javax.swing.JButton home;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JButton logout;
     // End of variables declaration//GEN-END:variables
 }
