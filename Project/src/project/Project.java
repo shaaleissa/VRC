@@ -4,6 +4,10 @@
  */
 package project;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author shahadaleissa
@@ -12,13 +16,25 @@ public class Project {
 
     
     public static void main(String[] args) {
-      
-                new SignIn().setVisible(true);
-            
-       
-       
-    }
+      try{
+          new SignIn().setVisible(true);
+      }
+      catch(Exception e){
+          e.printStackTrace();
+      }
+      finally{
+          try {
+              SignIn.con.close();
+          } catch (SQLException ex) {
+              Logger.getLogger(Project.class.getName()).log(Level.SEVERE, null, ex);
+          }
+      }
+                
+                
     
 
-    
 }
+}
+
+     
+ 
